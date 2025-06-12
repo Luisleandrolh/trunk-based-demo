@@ -40,3 +40,44 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Estilos adicionales para la mejora visual del CrUD */
+.App {
+  background-color: #2a2a2a;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input {
+  padding: 0.8em;
+  margin-right: 1em;
+  border-radius: 8px;
+  border: 1px solid #646cff;
+  background-color: #1a1a1a;
+  color: white;
+}
+
+table {
+  width: 100%;
+  margin-top: 2em;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 1em;
+  border-bottom: 1px solid #444;
+}
+
+th {
+  background-color: #1a1a1a;
+}
+
+button {
+  margin: 0.3em;
+}
+
+button:hover {
+  background-color: #646cff;
+  color: white;
+}
