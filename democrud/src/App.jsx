@@ -7,8 +7,19 @@ function App() {
   const [editIndex, setEditIndex] = useState(null);
 
   const handleAgregar = () => {
-    if (nombre.trim() === '') return;
+    // Validación 1: Campo vacío
+    if (nombre.trim() === '') {
+      alert("⚠️ El nombre no puede estar vacío");
+      return;
+    }
 
+    // Validación 2: Nombre duplicado (solo si NO estamos editando)
+    if (editIndex === null && nombres.includes(nombre)) {
+      alert("❌ ¡Este nombre ya existe!");
+      return;
+    }
+
+    // Lógica existente para agregar/editar
     if (editIndex !== null) {
       const nuevosNombres = [...nombres];
       nuevosNombres[editIndex] = nombre;
