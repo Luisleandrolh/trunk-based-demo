@@ -1,35 +1,64 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [nombre, setNombre] = useState('');
+  const [nombres, setNombres] = useState([]);
+  const [editIndex, setEditIndex] = useState(null);
+
+  const handleAgregar = () => {
+    if (nombre.trim() === '') return;
+
+    if (editIndex !== null) {
+      const nuevosNombres = [...nombres];
+      nuevosNombres[editIndex] = nombre;
+      setNombres(nuevosNombres);
+      setEditIndex(null);
+    } else {
+      setNombres([...nombres, nombre]);
+    }
+
+    setNombre('');
+  };
+
+  const handleEditar = (index) => {
+    setNombre(nombres[index]);
+    setEditIndex(index);
+  };
+
+  const handleEliminar = (index) => {
+    const nuevosNombres = nombres.filter((_, i) => i !== index);
+    setNombres(nuevosNombres);
+    if (editIndex === index) {
+      setNombre('');
+      setEditIndex(null);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+      <h1>CRUD Básico en React</h1>
+      <input
+        type="text"
+        value={nombre}
+        placeholder="Escribe un nombre"
+        onChange={(e) => setNombre(e.target.value)}
+      />
+      <button onClick={handleAgregar}>
+        {editIndex !== null ? 'Actualizar' : 'Agregar'}
+      </button>
+
+      <ul>
+        {nombres.map((n, index) => (
+          <li key={index}>
+            {n}{' '}
+            <button onClick={() => handleEditar(index)}>Editar</button>{' '}
+            <button onClick={() => handleEliminar(index)}>Eliminar</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default App
+export default App;
