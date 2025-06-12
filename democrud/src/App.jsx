@@ -9,13 +9,13 @@ function App() {
   const handleAgregar = () => {
     // Validación 1: Campo vacío
     if (nombre.trim() === '') {
-      alert("⚠️ El nombre no puede estar vacío");
+      alert("El nombre no puede estar vacío");
       return;
     }
 
     // Validación 2: Nombre duplicado (solo si NO estamos editando)
     if (editIndex === null && nombres.includes(nombre)) {
-      alert("❌ ¡Este nombre ya existe!");
+      alert("¡Este nombre ya existe!");
       return;
     }
 
@@ -52,7 +52,7 @@ function App() {
       <input
         type="text"
         value={nombre}
-        placeholder="Escribe un nombre"
+        placeholder="Escribe un nombre: "
         onChange={(e) => setNombre(e.target.value)}
       />
       <button onClick={handleAgregar}>
