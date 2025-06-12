@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 
 function App() {
   const [nombre, setNombre] = useState('');
@@ -48,15 +48,27 @@ function App() {
         {editIndex !== null ? 'Actualizar' : 'Agregar'}
       </button>
 
-      <ul>
-        {nombres.map((n, index) => (
-          <li key={index}>
-            {n}{' '}
-            <button onClick={() => handleEditar(index)}>Editar</button>{' '}
-            <button onClick={() => handleEliminar(index)}>Eliminar</button>
-          </li>
-        ))}
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {nombres.map((n, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{n}</td>
+              <td>
+                <button onClick={() => handleEditar(index)}>Editar</button>
+                <button onClick={() => handleEliminar(index)}>Eliminar</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
